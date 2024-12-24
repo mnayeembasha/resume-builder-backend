@@ -8,7 +8,7 @@ const app= express();
 app.use(express.json());
 connectDb(MONGO_URL as string);
 const corsOptions = {
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
     // methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
