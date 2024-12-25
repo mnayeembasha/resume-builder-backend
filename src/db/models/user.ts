@@ -25,7 +25,7 @@ const courseToBranches: Record<string, string[]> = coursesAndBranchesData;
 
 // Define the schema
 const userSchema = new Schema<IUser>({
-  firstName: { type: String, required: true },
+  firstName: { type: String, required: true,unique:true },
   lastName: { type: String, required: true },
   collegeName: { type: String, required: true },
   specialization: {
