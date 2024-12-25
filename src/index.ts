@@ -7,14 +7,14 @@ const app= express();
 
 app.use(express.json());
 connectDb(MONGO_URL as string);
-const corsOptions = {
+// const corsOptions = {
     // origin: "http://localhost:5173",
-    // methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  };
+   // methods: ["GET", "POST"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//   };
 
-  app.use(cors(corsOptions));
+  app.use(cors());
 
 
 app.use("/api/v1/user",userRouter);
