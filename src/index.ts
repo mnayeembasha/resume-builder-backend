@@ -8,7 +8,8 @@ const app= express();
 app.use(express.json());
 connectDb(MONGO_URL as string);
 const corsOptions = {
-    origin: "https://resume-builder-mnb.vercel.app",
+    // origin: "https://resume-builder-mnb.vercel.app",
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

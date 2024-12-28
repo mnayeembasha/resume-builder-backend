@@ -85,6 +85,57 @@ export const userRegistrationSchema = z.object({
     summary: z.object({
       summary: z.string().min(1, "Summary is required."),
     }),
+    education: z.object({
+      ssc: z.object({
+        institutionName: z.string().min(1, "Institution name is required."),
+        boardName: z.string().min(1, "Board name is required."),
+        specialization: z.string().optional(),
+        state: z.string().min(1, "State is required."),
+        city: z.string().min(1, "City is required."),
+        startDate: z.string(),
+        endDate: z.string(),
+        mathScore: z.string().optional(),
+        physicsScore: z.string().optional(),
+        chemistryScore: z.string().optional(),
+      }),
+      grades11And12: z.object({
+        stream: z.literal("MPC"), // Strict validation for "MPC"
+        institutionName: z.string().min(1, "Institution name is required."),
+        boardName: z.string().min(1, "Board name is required."),
+        state: z.string().min(1, "State is required."),
+        city: z.string().min(1, "City is required."),
+        startDate: z.string(),
+        endDate: z.string(),
+        mathScore: z.string().optional(),
+        physicsScore: z.string().optional(),
+        chemistryScore: z.string().optional(),
+      }),
+      underGraduation: z
+        .object({
+          institutionName: z.string().optional(),
+          university: z.string().optional(),
+          specialization: z.string().optional(),
+          startDate: z.string().optional(),
+          endDate: z.string().optional(),
+          state: z.string().optional(),
+          city: z.string().optional(),
+          cgpa: z.string().optional(),
+        })
+        .optional(),
+      graduation: z
+        .object({
+          institutionName: z.string().optional(),
+          university: z.string().optional(),
+          specialization: z.string().optional(),
+          state: z.string().optional(),
+          startDate: z.string().optional(),
+        endDate: z.string().optional(),
+          city: z.string().optional(),
+          cgpa: z.string().optional(),
+          ongoing: z.boolean().optional(),
+        })
+        .optional(),
+    }),
     certifications: z
       .array(
         z.object({

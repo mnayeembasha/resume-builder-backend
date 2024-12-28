@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, trusted } from "mongoose";
 
 interface ResumeDetails extends Document {
   personalInformation: {
@@ -23,6 +23,45 @@ interface ResumeDetails extends Document {
   };
   summary: {
     summary: string;
+  };
+  education: {
+    ssc: {
+      institutionName: string;
+      boardName: string;
+      specialization?: string;
+      state: string;
+      city: string;
+      mathScore?: number;
+      physicsScore?: number;
+      chemistryScore?: number;
+    };
+    grades11And12: {
+      stream: "MPC";
+      institutionName: string;
+      boardName: string;
+      state: string;
+      city: string;
+      mathScore?: number;
+      physicsScore?: number;
+      chemistryScore?: number;
+    };
+    undergraduation?: {
+      institutionName?: string;
+      university?: string;
+      specialization?: string;
+      state?: string;
+      city?: string;
+      cgpa?: number;
+    };
+    graduation?: {
+      institutionName?: string;
+      university?: string;
+      specialization?: string;
+      state?: string;
+      city?: string;
+      cgpa?: number;
+      ongoing?: boolean;
+    };
   };
   certifications?: {
     certificationName: string;
@@ -80,6 +119,53 @@ const resumeDetailsSchema = new Schema<ResumeDetails>({
   },
   summary: {
     summary: { type: String, required: true },
+  },
+  education: {
+    ssc: {
+      institutionName: { type: String, required: true },
+      boardName: { type: String, required: true },
+      specialization: { type: String, default: null },
+      state: { type: String, required: true },
+      city: { type: String, required: true },
+      startDate: { type: Date, default: null,required:true },
+      endDate: { type: Date, default: null,required:true },
+      mathScore: { type: Number, default: null },
+      physicsScore: { type: Number, default: null },
+      chemistryScore: { type: Number, default: null },
+    },
+    grades11And12: {
+      stream: { type: String, enum: ["MPC"], required: true },
+      institutionName: { type: String, required: true },
+      boardName: { type: String, required: true },
+      state: { type: String, required: true },
+      city: { type: String, required: true },
+      startDate: { type: Date, default: null,required:true },
+      endDate: { type: Date, default: null,required:true },
+      mathScore: { type: Number, default: null },
+      physicsScore: { type: Number, default: null },
+      chemistryScore: { type: Number, default: null },
+    },
+    underGraduation: {
+      institutionName: { type: String, default: null },
+      university: { type: String, default: null },
+      specialization: { type: String, default: null },
+      startDate: { type: Date, default: null },
+      endDate: { type: Date, default: null },
+      state: { type: String, default: null },
+      city: { type: String, default: null },
+      cgpa: { type: Number, default: null },
+    },
+    graduation: {
+      institutionName: { type: String, default: null },
+      university: { type: String, default: null },
+      specialization: { type: String, default: null },
+      startDate: { type: Date, default: null },
+      endDate: { type: Date, default: null },
+      state: { type: String, default: null },
+      city: { type: String, default: null },
+      cgpa: { type: Number, default: null },
+      ongoing: { type: Boolean, default: false },
+    },
   },
   certifications: [
     {

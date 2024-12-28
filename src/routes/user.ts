@@ -66,6 +66,7 @@ userRouter.post(
       personalInformation,
       basicInformation,
       summary,
+      education,
       certifications,
       internships,
       projects,
@@ -79,6 +80,7 @@ userRouter.post(
         personalInformation,
         basicInformation,
         summary,
+        education,
         certifications,
         internships,
         projects,
@@ -94,5 +96,42 @@ userRouter.post(
     }
   }
 );
+
+userRouter.get(
+  "/user-info",
+  async (req: Request<{}, {}, {}, { email: string }>, res: Response):Promise<void> => {
+    const { email } = req.query;
+
+    if (!email) {
+       res.status(400).json({ message: "Email is required" });
+       return;
+    }
+
+    try {
+      // // Fetch user details from userModel
+      // const user = await userModel.findOne({ email });
+
+      // if (!user) {
+      //   return res.status(404).json({ message: "User not found" });
+      // }
+
+      // Fetch user's resume details from userResumeDetailsModel
+      const resumeDetails = await userResumeDetailsModel.findOne({ "basicInformation.email":email });
+
+      // Combine both user details and resume details
+      // const userInfo = {
+      //   user,
+      //   resumeDetails,
+      // };
+
+      res.status(200).json({ message: "User information retrieved successfully", resumeDetails });
+      return;
+    } catch (error) {
+      console.error("Error fetching user information:", error);
+      res.status(500).json({ message: "An error occurred while retrieving the user information." });
+    }
+  }
+);
+
 
 export default userRouter;
