@@ -60,7 +60,7 @@ userRouter.post(
 
 userRouter.post(
   "/resume-details",
-  validateSchema(userResumeDetailsSchema), // Middleware for schema validation
+  validateSchema(userResumeDetailsSchema), 
   async (req: Request<{},{},ResumeDetailsRequestBody>, res: Response) => {
     const {
       personalInformation,

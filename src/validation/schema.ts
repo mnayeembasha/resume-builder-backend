@@ -64,7 +64,7 @@ export const userRegistrationSchema = z.object({
       firstName: z.string().min(1, "First name is required."),
       middleName: z.string().optional(),
       lastName: z.string().min(1, "Last name is required."),
-      currentDesignation: z.string().min(1, "Designation is required."),
+      currentDesignation: z.string().min(1, "Designation is required.").optional(),
       address: z.object({
         addressLine: z.string().optional(),
         country: z.string().min(1, "Country is required."),

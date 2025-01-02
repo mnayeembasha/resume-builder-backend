@@ -12,7 +12,9 @@ const corsOptions = {
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   };
+
   app.use(cors(corsOptions));
+
 
 app.use("/api/v1/user",userRouter);
 
@@ -28,4 +30,6 @@ app.get("*",(req,res)=>{
     res.status(404).json({message:"Invalid Route | Page Not Found"});
 })
 
-app.listen(PORT);
+app.listen(PORT,()=>{
+    console.log(`SERVER IS LISTENING ON PORT ${PORT}`);
+});
